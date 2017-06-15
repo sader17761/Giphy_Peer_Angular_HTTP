@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Giphy Peer Assignment</title>
+    <script src="vendors/angular.min.js" charset="utf-8"></script>
+    <script src="scripts/giphyController.js" charset="utf-8"></script>
+    <script src="scripts/services/giphyService.js" charset="utf-8"></script>
+    vendors/bootstrap.min.css
+    <link rel="stylesheet" href="styles/style.css">
+  </head>
+  <body ng-app="myApp">
+    <h1>Giphy Peer Assignment</h1>
+    <div ng-controller="GiphyController as gc">
+      <input type="text" ng-model="gc.searchIn" placeholder="search...">
+      <button ng-click="gc.searchGif(gc.searchIn)">Search</button>
+      <p ng-repeat="gif in gc.data">
+        <img src="{{ gif.images.downsized.url }}" alt="">
+      </p>
+      <p ng-repeat="results in gc.searchData">
+        <img src="{{ results.images.downsized.url }}" alt="">
+      </p>
+    </div>
+  </body>
+</html>
