@@ -14,10 +14,11 @@
     <div ng-controller="GiphyController as gc">
       <input type="text" ng-model="gc.searchIn" placeholder="search...">
       <button ng-click="gc.searchGif(gc.searchIn)">Search</button>
+      <button ng-click="gc.randomGif()">Random Gif</button>
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-md-offset-4">
-            <img src="{{ gif.images.downsized.url }}" alt="">
+            <img src="{{ gc.data }}" alt="">
           </div>
         </div>
         <div class="row">

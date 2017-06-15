@@ -8,10 +8,10 @@ myApp.service('GiphyService', function($http){
   sv.getRandom = function(){
     console.log('In getRandom');
     // $http calls happen here...
-    var apiUrl = 'http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC';
+    var apiUrl = 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC';
     return $http.get(apiUrl).then(function(response){
       console.log('This is our response:', response);
-      sv.dataWeWant = response.data.data;
+      sv.dataWeWant = response.data.data.image_url;
     });
   }; // end of getRandom
 
