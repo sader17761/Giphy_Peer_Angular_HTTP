@@ -10,20 +10,31 @@
     <link rel="stylesheet" href="styles/style.css">
   </head>
   <body ng-app="myApp">
-    <h1>Giphy Peer Assignment</h1>
     <div ng-controller="GiphyController as gc">
-      <input type="text" ng-model="gc.searchIn" placeholder="search...">
-      <button ng-click="gc.searchGif(gc.searchIn)">Search</button>
-      <button ng-click="gc.randomGif()">Random Gif</button>
+      <div class="text-center">
+        <h1>Giphy Peer Assignment</h1>
+        <input type="text" ng-model="gc.searchIn" placeholder="search...">
+        <button ng-click="gc.searchGif(gc.searchIn)">Search</button>
+        <button ng-click="gc.randomGif()">Random Gif</button>
+        <p class="dropdown">
+          <!-- <label>Or, choose a from a previous search:
+            <input list="browsers" name="myBrowser" /></label> -->
+            <div id="searchItems">
+              <select ng-model="gc.selectedItem" ng-options="item for item in gc.searchResultsArray"></select>
+            </div>
+            <!-- <datalist id="browsers">
+              <option value="{{ res }}" ng-model="gc.searchInDropDown" ng-repeat="res in gc.searchResultsArray">
+            </datalist> -->
+            <button ng-click="gc.oldSearch(gc.selectedItem)">Search</button>
+        </p>
+      </div>
       <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-            <img src="{{ gc.data }}" alt="">
-          </div>
+        <div class="randomImageDiv">
+          <img src="{{ gc.data }}" class="randImgSize">
         </div>
         <div class="row">
           <div class="col-md-3 divSize" ng-repeat="results in gc.searchData">
-            <img src="{{ results.images.downsized.url }}" alt="" class="imgSize">
+            <img src="{{ results.images.downsized.url }}" class="imgSize img-thumbnail">
           </div>
         </div>
       </div>

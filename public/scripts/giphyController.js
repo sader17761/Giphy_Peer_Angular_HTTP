@@ -6,6 +6,8 @@ var myApp = angular.module('myApp', []);
 myApp.controller('GiphyController', function(GiphyService){
   var vm = this;
 
+  vm.searchResultsArray = [];
+
   vm.randomGif = function(){
     console.log('In randomGif');
     GiphyService.getRandom().then(function(){
@@ -15,10 +17,16 @@ myApp.controller('GiphyController', function(GiphyService){
   }; // end randomGif function
 
   vm.searchGif = function(input){
-    console.log('Button clicked in searchGif');
+    vm.searchResultsArray.push(input);
+    vm.searchIn = '';
     GiphyService.getSearch(input).then(function(){
-      console.log('Back with our search results:', GiphyService.searchResultsWeWant);
       vm.searchData = GiphyService.searchResultsWeWant;
-    });
-  };
+    }); // end of getSearch()
+  }; // end of searchGif function
+
+  vm.oldSearch = function(input){
+    GiphyService.getSearch(input).then(function(){
+      vm.searchData = GiphyService.searchResultsWeWant;
+    }); // end of getSearch()
+  }; // end of searchGif function
 }); // end GiphyController
